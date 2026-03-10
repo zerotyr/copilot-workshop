@@ -12,7 +12,8 @@ Before the workshop, make sure you have the following installed and working:
 |---|---|
 | VS Code | Latest stable release |
 | GitHub Copilot extension | Sign in with your GitHub account |
-| GitHub Copilot CLI | `brew install copilot-cli` or `curl -fsSL https://gh.io/copilot-install \| bash` — [docs](https://docs.github.com/copilot/concepts/agents/about-copilot-cli) |
+| GitHub Copilot CLI | `winget install GitHub.Copilot` or `brew install copilot-cli` or `curl -fsSL https://gh.io/copilot-install \| bash` — [docs](https://docs.github.com/copilot/concepts/agents/about-copilot-cli) |
+| GitHub Copilot CLI (Windows only) | Powershell v6 or higher |
 | Your preferred language runtime | e.g., Node.js, Python, Java, Go, etc. |
 
 Verify Copilot CLI is working:
@@ -53,6 +54,12 @@ copilot --version
 ## A Note on Language
 
 Every exercise is designed to work with **any programming language or framework**. Sample prompts use generic language — adapt them to your project as you go. The goal is to learn how to work with Copilot, not to learn a specific technology.
+
+---
+
+## Troubleshooting
+
+Having issues? See [troubleshooting Copilot](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/troubleshoot-copilot/troubleshoot-common-issues).
 
 ---
 
