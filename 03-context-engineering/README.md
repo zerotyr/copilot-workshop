@@ -111,6 +111,54 @@ Then position your cursor below the comment and trigger an inline completion.
 
 ---
 
+## Guided Path: Context Experiments with `snip`
+
+> **Following the guided path?** These three experiments demonstrate context quality differences directly on your `snip` project.
+
+### Experiment 1 — No context vs. file context
+
+**Round 1 — without context:**
+```
+How should I add a --format flag to the list command that switches between plain text and JSON output?
+```
+
+Note the response. Is it generic? Does it reference the right files and functions?
+
+**Round 2 — with file references** (adjust the file paths to your actual project structure):
+```
+Using #file:src/cli.py and #file:src/storage.py, how should I add a --format flag to
+the list command that switches between plain text (default) and JSON output?
+Which file should change? What's the minimal change needed?
+```
+
+Compare the two answers. The second should name specific functions and show exactly where to add the flag.
+
+### Experiment 2 — Cross-file reasoning
+
+```
+Using #file:src/cli.py and #file:tests/test_snip.py, which subcommands currently
+have test coverage and which ones are missing tests entirely?
+```
+
+This requires Copilot to correlate the implementation file with the test file — it can only do that if you explicitly give it both.
+
+### Experiment 3 — Discovery with `@workspace`
+
+When you don't know exactly where something lives:
+```
+@workspace Where is the JSON file path defined in this project?
+Is it hardcoded, or is there a way to configure it?
+```
+
+Then follow up without any `@workspace`:
+```
+What would need to change to make the storage path configurable via an environment variable?
+```
+
+Note how the follow-up can reference what was just discovered — Copilot carries context through the conversation.
+
+---
+
 ## What's Next?
 
 [04 — Prompt Engineering](../04-prompt-engineering/README.md)

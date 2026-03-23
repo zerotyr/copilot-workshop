@@ -96,6 +96,57 @@ Try this to see the difference clearly:
 
 ---
 
+## Guided Path: Extending `snip`
+
+> **Following the guided path?** Use the tasks below on your `snip` project. Work through them in order — each one relies on the output of the previous one.
+
+### Task 1 — Add a `search` subcommand
+
+Open your `snip` project in VS Code and switch Copilot Chat to **Agent** mode. Run this prompt:
+
+```
+Add a `search <keyword>` subcommand to snip.
+It should print all notes whose title or content contains the keyword (case-insensitive).
+Output format: same as `list` — title and first 60 characters of content.
+If no notes match, print "No notes found matching: <keyword>".
+Run the tests after adding the feature. Also add a test for the search command.
+```
+
+Verify it works:
+```
+snip add "meeting notes" "discuss the quarterly roadmap and budget"
+snip add "todo" "fix the login bug before Friday"
+snip search "budget"
+snip search "xyz"
+```
+
+### Task 2 — Add input validation across all commands
+
+```
+Add input validation to every subcommand in snip:
+- add: reject an empty title or empty content — print "Error: title cannot be empty"
+  or "Error: content cannot be empty" to stderr and exit with code 1.
+- get: if the note doesn't exist, print "Note not found: <title>" to stderr and exit with code 1.
+- delete: if the note doesn't exist, print "Note not found: <title>" to stderr and exit with code 1.
+- add: if a note with the same title already exists, print "Note already exists: <title>"
+  to stderr and exit with code 1.
+
+After each change, run the tests. Add tests for each of the new error cases.
+```
+
+### Task 3 — Watch agent mode self-correct
+
+After Tasks 1 and 2, check whether agent mode left any TODO comments in the codebase:
+
+```
+Find all TODO comments in the codebase and implement each one.
+Run the tests when you're done to confirm everything still passes.
+```
+
+**Watch closely:** does agent mode read the test output before deciding it's done? Does it catch a test failure and correct itself?
+
+---
+
 ## What's Next?
 
 [02 — GitHub Copilot CLI](../02-copilot-cli/README.md)

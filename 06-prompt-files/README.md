@@ -145,6 +145,53 @@ In Copilot Chat, type `#` to open the reference picker. Your prompt files will a
 
 ---
 
+## Guided Path: A Reusable Subcommand Template for `snip`
+
+> **Following the guided path?** Follow these steps to create a prompt file that makes adding any new subcommand to `snip` a one-line task.
+
+### Step 1 — Create the prompt file
+
+Create the file `.github/prompts/add-subcommand.prompt.md` in your `snip` project:
+
+```markdown
+---
+name: add-subcommand
+description: Add a new subcommand to the snip CLI
+---
+
+Add a new subcommand called `[SUBCOMMAND_NAME]` to the snip CLI.
+
+What it should do: [DESCRIPTION]
+
+Follow the existing subcommand patterns exactly:
+- Parse arguments in the CLI module — no business logic in the parser
+- Implement the logic using the storage module — no direct file access elsewhere
+- Print a human-readable confirmation on success (e.g., "Done: [SUBCOMMAND_NAME]")
+- Print errors to stderr and exit with code 1 on failure
+- Add at least one happy path test and one error path test
+- Tests must use a temporary file or mocked storage — never the real notes.json
+
+After creating all files, run the tests and confirm they pass.
+```
+
+### Step 2 — Use the prompt file
+
+1. In Copilot Chat (agent mode), type `#` and select `add-subcommand` from the picker
+2. Fill in the two placeholders:
+   - `[SUBCOMMAND_NAME]` → `count`
+   - `[DESCRIPTION]` → `Print the total number of saved notes. Output format: "X notes saved." Exit with code 0 even if there are no notes.`
+3. Send the completed prompt
+
+### Step 3 — Use it again immediately
+
+Without writing anything from scratch, use the same prompt file again to add a `copy` subcommand:
+- `[SUBCOMMAND_NAME]` → `copy`
+- `[DESCRIPTION]` → `Print the content of the note with the given title to stdout, prefixed with "---". This makes it easy to pipe into other commands. Exit with code 1 if the note does not exist.`
+
+Notice how the same template produced two different, correctly structured subcommands. The prompt file captured the pattern once and applied it twice.
+
+---
+
 ## What's Next?
 
 [07 — Custom Agents](../07-custom-agents/README.md)

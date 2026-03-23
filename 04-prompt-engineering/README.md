@@ -284,6 +284,70 @@ Share your before/after prompts with the group — the discussion is often more 
 
 ---
 
+## Guided Path: Prompt Pairs on `snip`
+
+> **Following the guided path?** Try each pair of prompts on your `snip` project. Run the vague one first, evaluate the result, then run the specific one and compare.
+
+### Pair 1 — Adding a feature
+
+**Vague:**
+```
+Add an export feature to snip.
+```
+
+**Specific:**
+```
+Add an `export` subcommand to snip that writes all saved notes to stdout as a JSON array.
+Each object in the array must have exactly two fields: "title" and "content".
+If there are no saved notes, output an empty array: []
+Do not write to a file — stdout only.
+Exit with code 0 on success.
+Add one test that verifies: when two notes exist, the export output is valid JSON
+and contains both notes with the correct fields.
+```
+
+After each version, run the tests and manually test with `snip export`. Note the differences.
+
+### Pair 2 — Fixing a gap in the interface
+
+**Vague:**
+```
+Make the add command safer.
+```
+
+**Specific:**
+```
+In the snip add command, if a note with the same title already exists,
+ask the user to confirm before overwriting: print "Note 'title' already exists.
+Overwrite? [y/N]: " to stderr and wait for input.
+If the user types "y" or "Y", overwrite the note and print "Note updated: title".
+If the user types anything else (or just presses Enter), abort and print "Aborted."
+Exit with code 0 in both cases.
+Add a test that mocks the user input to cover both the overwrite and abort paths.
+```
+
+### Pair 3 — Step-by-step for a multi-file change
+
+Try step-by-step prompting on a slightly larger change:
+
+```
+Add a --storage flag to the snip entry point that overrides the default notes.json path.
+Work through this in order:
+
+1. Read the current storage module and identify where the file path is defined.
+2. Add a --storage <path> optional flag to the CLI argument parser.
+3. Pass the path value from the parsed flags down to the storage module.
+4. Update the README with the new usage example.
+5. Update the tests to pass a temporary file path instead of relying on notes.json.
+6. Run all tests and confirm they pass.
+
+Do not skip steps. Show me what you find in step 1 before proceeding.
+```
+
+This prompt forces an ordered plan. Watch whether Copilot reports back after step 1 before proceeding.
+
+---
+
 ## What's Next?
 
 [05 — Custom Instructions](../05-custom-instructions/README.md)

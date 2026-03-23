@@ -26,9 +26,15 @@ copilot --version
 
 ## How to Use This Workshop
 
+### Option A — Bring Your Own Project
 1. Start with **Getting Started** — use the scaffold prompt to create a project workspace in your language of choice. You'll use this project throughout all exercises.
 2. Work through the numbered topics in order, or jump to any topic that interests you — each section is self-contained.
 3. Every topic has **sample prompts to try** and **reflection questions** to discuss with the group.
+
+### Option B — Follow the Guided Path
+Every exercise includes a **Guided Path** section with explicit, step-by-step instructions for building a simple command-line tool called `snip`. If you'd rather follow a concrete path than bring your own project, look for the **Guided Path** section in each exercise.
+
+> **What is `snip`?** A minimal command-line note manager. You'll build it from scratch in your language of choice and extend it across every exercise — adding subcommands, validation, tests, and tooling one step at a time.
 
 > **Tip for facilitators:** Pause after each exercise to collect observations from the group. The best learning moments come from comparing what different participants got from the same prompt.
 

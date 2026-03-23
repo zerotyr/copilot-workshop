@@ -60,6 +60,69 @@ Discuss with the group:
 
 ---
 
+---
+
+## Guided Path: Scaffold `snip`
+
+> **Following the guided path?** Use the prompt below instead of the open-ended one above. It will scaffold a specific project — a command-line note manager called `snip` — that you'll extend in every subsequent exercise.
+
+### What You're Building
+
+`snip` is a minimal CLI tool for saving and retrieving short notes from the command line:
+
+```
+snip add "standup" "mention the auth refactor and the CI fix"
+snip list
+snip get "standup"
+snip delete "standup"
+```
+
+Notes are stored as a JSON file (`notes.json`) in the current directory. No external services, no database — just plain files and standard library code.
+
+### Step 1 — Pick Your Language
+
+Decide which programming language and runtime you'll use. The tool works equally well in Python, Node.js, Go, Java, Ruby, Rust, C#, or any other language with file I/O and argument parsing support.
+
+### Step 2 — Run the Scaffold Prompt
+
+Copy and paste this prompt into Copilot Chat in **Agent** mode. Replace `[YOUR LANGUAGE]` with your choice.
+
+```
+I want to build a simple command-line note-taking tool called "snip" in [YOUR LANGUAGE].
+
+It should support these subcommands:
+- add <title> <content>  — Save a new note with the given title and content
+- list                   — Print all saved notes (title + first 60 characters of content)
+- get <title>            — Print the full content of a note by its exact title
+- delete <title>         — Remove a note by its exact title
+
+Storage: save all notes as a JSON array in a file called notes.json in the current directory.
+Each note object should have "title" and "content" fields.
+
+Scaffold the full project including:
+- A realistic folder structure for a [YOUR LANGUAGE] CLI project
+- A working entry point I can run immediately (e.g., `python snip.py add "hello" "world"`)
+- A storage module that handles all reading and writing of notes.json
+- A CLI module that parses the subcommand and delegates to the right logic
+- At least 3 tests: one for add, one for list, one for delete
+- A README.md with exact commands to install dependencies and run the tool
+
+After creating all files, tell me the exact commands to install dependencies, run the tests,
+and verify the tool works end-to-end.
+```
+
+### Step 3 — Verify the Scaffold
+
+Run the commands Copilot gives you. Confirm:
+
+1. The tests pass
+2. You can add a note: `snip add "test" "hello world"`
+3. You can list it: `snip list`
+4. You can retrieve it: `snip get "test"`
+5. You can delete it: `snip delete "test"`
+
+---
+
 ## What's Next?
 
-You now have a real project workspace to use for the rest of the workshop. Head to [01 — Agent Mode](../01-agent-mode/README.md).
+You now have a working `snip` project to use for the rest of the workshop. Head to [01 — Agent Mode](../01-agent-mode/README.md).

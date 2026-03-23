@@ -135,6 +135,49 @@ the tests automatically.
 
 ---
 
+## Guided Path: Using `snip` with the CLI
+
+> **Following the guided path?** Open a terminal, navigate to your `snip` project directory, and launch `copilot`. Use the tasks below.
+
+### Task 1 — Understand the codebase from the terminal
+
+```
+Explain how the storage module in this project works. How does it read notes from disk
+and write them back? What happens if notes.json doesn't exist yet?
+```
+
+Notice how Copilot CLI reads the actual source files to answer — you don't need to copy-paste anything.
+
+### Task 2 — Add a backup script
+
+```
+Write a shell script called backup.sh in the project root that copies notes.json to a
+backup file named notes.json.YYYY-MM-DD (using today's date in the filename).
+If notes.json doesn't exist, the script should print "No notes.json found — nothing to back up"
+and exit with code 0. Make the script executable.
+```
+
+After it creates the script, test it:
+```sh
+./backup.sh
+ls notes.json.*
+```
+
+### Task 3 — Add a `--count` flag to `list`
+
+Try this in Autopilot mode (`Shift+Tab` to enable):
+
+```
+Add a --count flag to the snip list command. When the flag is present, print the total
+number of notes at the bottom of the output, e.g. "Total: 3 notes".
+When the flag is absent, behavior is unchanged.
+Run the tests after making the change.
+```
+
+Watch how Autopilot mode drives through multiple steps — reading files, making edits, running tests — without pausing for approval on each step.
+
+---
+
 ## What's Next?
 
 [03 — Context Engineering](../03-context-engineering/README.md)

@@ -174,6 +174,78 @@ You are a software architect familiar with this codebase. When asked a question:
 
 ---
 
+## Guided Path: A Specialist Agent for `snip`
+
+> **Following the guided path?** Build a custom agent that knows the `snip` codebase and can be handed any feature request with consistent, high-quality output.
+
+### Step 1 — Create the agent file
+
+Create `.github/agents/snip-developer.agent.md` in your project:
+
+```markdown
+---
+name: Snip Developer
+description: Builds and extends the snip CLI — reads the codebase before acting, follows all conventions, always runs tests
+tools:
+  - codebase
+  - terminal
+  - problems
+---
+
+You are a developer who knows the snip CLI codebase well.
+
+When asked to add or change a feature:
+
+1. Read the existing subcommand implementations before writing any code.
+   Understand the patterns in use — folder structure, argument parsing style,
+   how the storage module is called, how errors are returned.
+
+2. Follow those patterns exactly. Do not introduce new abstractions or libraries
+   unless the task explicitly requires it.
+
+3. Always write tests alongside the implementation. Every subcommand needs:
+   - At least one happy path test
+   - At least one error path test
+   Tests must use a temporary file or mocked storage — never the real notes.json.
+
+4. Success output goes to stdout. Error output goes to stderr. Exit codes: 0 for success, 1 for error.
+
+5. After making all changes, run the tests using the project's test runner.
+   If tests fail, fix them before reporting back.
+
+6. When you finish, summarize:
+   - Which files you created or modified
+   - What the new subcommand does and how to run it
+   - The test output confirming everything passes
+```
+
+### Step 2 — Select the agent and give it a task
+
+1. Open Copilot Chat and click the agent picker
+2. Select **Snip Developer**
+3. Give it this task (no `add-subcommand` prompt file needed — the agent carries all the context):
+
+```
+Add a `stats` subcommand that prints a summary of the notes collection:
+- Total number of notes
+- The title of the most recently added note
+- The average character count of all notes (rounded to the nearest integer)
+If there are no notes, print "No notes saved yet."
+```
+
+### Step 3 — Compare to vanilla agent mode
+
+Once the agent completes the task, open a new chat, switch to default **Agent** mode (no custom agent), and give it the exact same task. Compare:
+
+- Did the default agent read existing implementations before writing?
+- Did it follow the same error handling and output conventions without being told?
+- Were the tests structured consistently with the rest of the test suite?
+- Did it run the tests automatically?
+
+The difference in consistency is the value of the custom agent's system prompt.
+
+---
+
 ## Workshop Complete
 
 You've covered all seven topics. Here's the progression you've worked through:
